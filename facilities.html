@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facilities & Wellness | U Rivergate Resort & Spa, Karjat</title>
+<meta name="description" content="Spa, gym, games room, kids' play area, adventure activities, banquets and lawns at U Rivergate Resort & Spa, Karjat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+/* ============================================================
+   U RIVERGATE RESORT & SPA — shared stylesheet
+   Palette: deep river forest, sun-bleached sand, weathered gold
+   Type: Fraunces (display) + Jost (body) + Jost (utility/caps)
+   ============================================================ */
+
+:root{
+  --forest:      #16302b;
+  --forest-deep: #0e211d;
+  --river:       #4d7c78;
+  --river-light: #9cbdb6;
+  --sand:        #f3ede1;
+  --sand-deep:   #e8ddc8;
+  --gold:        #b98a3e;
+  --gold-light:  #d8b571;
+  --ink:         #1b201d;
+  --white:       #ffffff;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Jost', sans-serif;
+
+  --max-width: 1280px;
+  --edge: clamp(20px, 5vw, 72px);
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--sand);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+img{ max-width:100%; display:block; }
+a{ color: inherit; text-decoration: none; }
+ul{ list-style:none; margin:0; padding:0; }
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0 0 .5em;
+  color: var(--forest-deep);
+  letter-spacing: .01em;
+}
+p{ margin: 0 0 1em; }
+.container{
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--edge);
+}
+.eyebrow{
+  font-family: var(--font-body);
+  font-size: .72rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 14px 30px;
+  font-family: var(--font-body);
+  font-size: .8rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 2px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--forest-deep);
+  cursor:pointer;
+  transition: all .35s ease;
+  white-space: nowrap;
+}
+.btn:hover{ background: var(--gold); color: var(--white); }
+.btn.solid{ background: var(--gold); color: var(--white); }
+.btn.solid:hover{ background: var(--forest-deep); border-color: var(--forest-deep); }
+.btn.light{ border-color: rgba(255,255,255,.6); color:#fff; }
+.btn.light:hover{ background:#fff; color: var(--forest-deep); }
+
+/* Visually-hidden focus-friendly skip link */
+.skip-link{
+  position:absolute; left:-999px; top:0; background:var(--gold); color:#fff;
+  padding:10px 16px; z-index:999;
+}
+.skip-link:focus{ left:10px; top:10px; }
+
+:focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ---------------- Header / Nav ---------------- */
+.site-header{
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 500;
+  padding: 18px 0;
+  transition: background .4s ease, padding .4s ease, box-shadow .4s ease;
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.site-header.solid,
+.site-header.is-scrolled{
+  background: var(--forest-deep);
+  padding: 10px 0;
+  box-shadow: 0 6px 24px rgba(0,0,0,.18);
+}
+.logo{
+  font-family: var(--font-display);
+  color:#fff;
+  line-height:1.05;
+}
+.logo .l1{ font-size: 1.5rem; letter-spacing:.06em; }
+.logo .l2{ display:block; font-family: var(--font-body); font-size:.62rem; letter-spacing:.32em; text-transform:uppercase; color: var(--gold-light); margin-top:4px; }
+
+.nav-desktop{ display:flex; align-items:center; gap: 34px; }
+.nav-desktop a{
+  color:#f2ede1;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  position:relative;
+  padding: 6px 0;
+}
+.nav-desktop a::after{
+  content:"";
+  position:absolute; left:0; bottom:0; width:0; height:1px;
+  background: var(--gold-light);
+  transition: width .3s ease;
+}
+.nav-desktop a:hover::after, .nav-desktop a.active::after{ width:100%; }
+.nav-desktop a.active{ color: var(--gold-light); }
+
+.nav-actions{ display:flex; align-items:center; gap:16px; }
+.phone-link{ color:#f2ede1; font-size:.78rem; letter-spacing:.05em; display:flex; align-items:center; gap:8px;}
+.phone-link svg{ flex-shrink:0; }
+
+.nav-toggle{
+  display:none;
+  background:none; border:none; cursor:pointer;
+  width: 34px; height: 24px; position:relative;
+}
+.nav-toggle span{
+  position:absolute; left:0; right:0; height:2px; background:#fff;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.nav-toggle span:nth-child(1){ top:0; }
+.nav-toggle span:nth-child(2){ top:11px; }
+.nav-toggle span:nth-child(3){ top:22px; }
+.nav-toggle.open span:nth-child(1){ transform: translateY(11px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ transform: translateY(-11px) rotate(-45deg); }
+
+.mobile-panel{
+  position: fixed; inset:0;
+  background: var(--forest-deep);
+  z-index: 480;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap: 26px;
+  transform: translateY(-100%);
+  transition: transform .45s ease;
+}
+.mobile-panel.open{ transform: translateY(0); }
+.mobile-panel a{
+  color:#f2ede1; font-size:1.1rem; letter-spacing:.1em; text-transform:uppercase;
+}
+
+/* ---------------- Hero ---------------- */
+.hero{
+  position:relative;
+  height: 100vh;
+  min-height: 560px;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  color:#fff;
+}
+.hero-slide{
+  position:absolute; inset:0;
+  background-size: cover;
+  background-position:center;
+  opacity:0;
+  transition: opacity 1.6s ease;
+}
+.hero-slide.active{ opacity:1; }
+.hero-slide::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(14,33,29,.35) 0%, rgba(14,33,29,.35) 40%, rgba(14,33,29,.88) 100%);
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding: 0 var(--edge) 90px;
+  max-width: 900px;
+}
+.hero-content h1{
+  color:#fff;
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  line-height:1.08;
+  margin-bottom: 18px;
+}
+.hero-content p{ color: #e9e2d2; max-width:560px; font-size:1.02rem; }
+.hero-cta{ display:flex; gap:16px; flex-wrap:wrap; margin-top: 24px;}
+
+.hero-facts{
+  position:relative; z-index:2;
+  border-top: 1px solid rgba(255,255,255,.25);
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+}
+.hero-facts div{
+  padding: 18px var(--edge);
+  border-right: 1px solid rgba(255,255,255,.15);
+}
+.hero-facts div:last-child{ border-right:none; }
+.hero-facts .num{ font-family: var(--font-display); font-size:1.5rem; color: var(--gold-light); }
+.hero-facts .label{ font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:#cfd9d2; }
+
+.hero-dots{
+  position:absolute; right: var(--edge); bottom: 130px; z-index:3;
+  display:flex; flex-direction:column; gap:10px;
+}
+.hero-dots button{
+  width:9px; height:9px; border-radius:50%;
+  border:1px solid #fff; background:transparent; cursor:pointer; padding:0;
+}
+.hero-dots button.active{ background: var(--gold-light); border-color: var(--gold-light); }
+
+/* ---------------- Page hero (inner pages) ---------------- */
+.page-hero{
+  position:relative;
+  height: 52vh;
+  min-height: 340px;
+  display:flex; align-items:flex-end;
+  background-size:cover; background-position:center;
+  color:#fff;
+  margin-top: 70px;
+  align-items: center;
+}
+.page-hero::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(14,33,29,.25), rgba(14,33,29,.82));
+  background: #000;
+    opacity: 0.4;
+}
+.page-hero .container{ position:relative; z-index:2; padding-bottom:56px; }
+.page-hero h1{ color:#fff; font-size: clamp(2rem,4.4vw,3.2rem); margin-bottom:10px;}
+.crumb{ font-size:.75rem; letter-spacing:.16em; text-transform:uppercase; color: var(--gold-light);}
+
+/* ---------------- Sections ---------------- */
+section{ padding: clamp(60px, 9vw, 110px) 0; }
+.section-head{ max-width: 640px; margin-bottom: 46px; }
+.section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.bg-forest{ background: var(--forest); color: var(--sand); }
+.bg-forest h2, .bg-forest h3{ color:#fff; }
+.bg-forest .eyebrow{ color: var(--gold-light); }
+.bg-deep{ background: var(--forest-deep); color: var(--sand); }
+.bg-deep h2, .bg-deep h3{ color:#fff; }
+.bg-sand-deep{ background: var(--sand-deep); }
+
+/* About / intro split */
+.split{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 5vw, 70px);
+  align-items:center;
+}
+.split img{ border-radius:2px; }
+.split .frame{ position:relative; }
+.split .frame::before{
+  content:""; position:absolute; inset: 18px -18px -18px 18px;
+  border: 1px solid var(--gold); z-index:-1;
+}
+
+/* Feature / pillar grid (Mayfair "Luxury & Relaxation" style) */
+.pillar-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--sand-deep);
+}
+.pillar{
+  background: var(--sand);
+  padding: 40px 34px;
+  position:relative;
+}
+.pillar .icon{ color: var(--gold); margin-bottom:18px; }
+.pillar h3{ font-size:1.15rem; }
+.pillar p{ font-size:.92rem; color:#4b524d; margin-bottom: 18px;}
+.pillar a{ font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--forest); border-bottom:1px solid var(--gold); padding-bottom:2px;}
+
+/* Card grids (offers / rooms) */
+.card-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.card{
+  background:#fff;
+  border: 1px solid var(--sand-deep);
+  display:flex; flex-direction:column;
+  overflow:hidden;
+}
+.card .thumb{ aspect-ratio: 4/3; overflow:hidden; }
+.card .thumb img{ width:100%; height:100%; object-fit:cover; transition: transform .6s ease; }
+.card:hover .thumb img{ transform: scale(1.06); }
+.card .body{ padding: 26px 26px 30px; flex:1; display:flex; flex-direction:column; }
+.card h3{ font-size:1.2rem; }
+.card p{ font-size:.9rem; color:#4b524d; flex:1; }
+.price{ font-family: var(--font-display); color: var(--gold); font-size:1.1rem; margin: 6px 0 16px;}
+.price .was{ font-size:.85rem; color:#8b8f8a; text-decoration: line-through; margin-right:8px; font-family: var(--font-body); }
+.tag{
+  position:absolute; margin:14px; padding:6px 14px; background: var(--gold); color:#fff;
+  font-size:.65rem; letter-spacing:.14em; text-transform:uppercase;
+}
+
+/* Services checklist */
+.check-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 40px;
+}
+.check-grid li{ display:flex; gap:14px; align-items:flex-start; font-size:.95rem; }
+.check-grid li svg{ flex-shrink:0; margin-top:3px; color: var(--gold); }
+
+/* Amenity list w/ image (facilities) */
+.amenity-row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px,5vw,64px);
+  align-items:center;
+  padding: 50px 0;
+  border-bottom: 1px solid var(--sand-deep);
+}
+.amenity-row:last-child{ border-bottom:none; }
+.amenity-row.reverse .img-col{ order:2; }
+.amenity-row .num{ font-family: var(--font-display); color: var(--gold-light); font-size:.85rem; letter-spacing:.1em; }
+
+/* Gallery masonry-ish grid */
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.gallery-grid a{ display:block; overflow:hidden; aspect-ratio: 1/1; }
+.gallery-grid img{ width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
+.gallery-grid a:hover img{ transform: scale(1.08); }
+
+/* Testimonials */
+.testi-track{ display:flex; gap:28px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:10px; }
+.testi-card{
+  scroll-snap-align:start;
+  min-width: min(420px, 85vw);
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.18);
+  padding: 30px;
+}
+.stars{ color: var(--gold-light); letter-spacing:2px; margin-bottom:14px; font-size:.9rem;}
+.testi-card p{ color:#e3ddd0; font-size:.95rem; }
+.testi-who{ font-size:.8rem; letter-spacing:.06em; color: var(--gold-light); text-transform:uppercase; margin-top:14px;}
+
+/* Map + contact */
+.contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items:start; }
+.info-line{ display:flex; gap:14px; margin-bottom:22px; align-items:flex-start; }
+.info-line svg{ color: var(--gold); flex-shrink:0; margin-top:3px; }
+.map-frame{ width:100%; height:400px; border:0; filter: grayscale(.2) contrast(1.05); }
+
+.form-grid{ display:grid; grid-template-columns:1fr 1fr; gap: 18px; }
+.form-grid .full{ grid-column: 1/-1; }
+.form-field label{ display:block; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:#6c7369; margin-bottom:8px; }
+.form-field input, .form-field select, .form-field textarea{
+  width:100%; padding: 13px 14px; border:1px solid var(--sand-deep); background:#fff;
+  font-family: var(--font-body); font-size:.92rem; color:var(--ink);
+}
+.form-field textarea{ resize:vertical; min-height:110px; }
+
+/* CTA banner */
+.cta-banner{
+  background: linear-gradient(180deg, var(--forest-deep), var(--forest));
+  color:#fff; text-align:center;
+}
+.cta-banner h2{ color:#fff; }
+
+/* Footer */
+.site-footer{ background: var(--forest-deep); color:#cbd2c9; }
+.footer-top{ padding: 70px 0 40px; display:grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
+.footer-top h4{ color:#fff; font-size:.78rem; letter-spacing:.16em; text-transform:uppercase; margin-bottom:20px; font-family:var(--font-body); }
+.footer-top a, .footer-top li{ font-size:.88rem; color:#a9b3a5; margin-bottom:10px; display:block; }
+.footer-top a:hover{ color: var(--gold-light); }
+.footer-brand .logo .l1{ font-size:1.6rem; }
+.footer-brand p{ color:#a9b3a5; font-size:.88rem; margin-top:14px; max-width:280px; }
+.social-row{ display:flex; gap:14px; margin-top:20px; }
+.social-row a{ width:36px; height:36px; border:1px solid rgba(255,255,255,.25); display:flex; align-items:center; justify-content:center; border-radius:50%; }
+.social-row a:hover{ background: var(--gold); border-color: var(--gold); }
+.newsletter-row{ display:flex; gap:0; border:1px solid rgba(255,255,255,.25); max-width:340px; }
+.newsletter-row input{ flex:1; background:transparent; border:0; padding:12px 14px; color:#fff; font-family:var(--font-body); }
+.newsletter-row input::placeholder{ color:#8b9389; }
+.newsletter-row button{ border:0; background: var(--gold); color:#fff; padding:0 18px; cursor:pointer; }
+.footer-bottom{
+  border-top: 1px solid rgba(255,255,255,.12);
+  padding: 22px 0;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  font-size:.78rem; color:#8b9389;
+}
+
+/* Floating whatsapp/call buttons */
+.float-actions{ position:fixed; right:20px; bottom:20px; z-index:400; display:flex; flex-direction:column; gap:12px; }
+.float-actions a{
+  width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  color:#fff; box-shadow: 0 6px 18px rgba(0,0,0,.25);
+}
+.float-actions .wa{ background:#2fae5e; }
+.float-actions .call{ background: var(--gold); }
+
+/* Utility */
+.mt-0{margin-top:0;}
+.text-center{text-align:center;}
+.reveal{ opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 980px){
+  .nav-desktop{ display:none; }
+  .nav-toggle{ display:block; }
+  .pillar-grid, .card-grid{ grid-template-columns: repeat(2,1fr); }
+  .footer-top{ grid-template-columns: 1fr 1fr; }
+  .check-grid{ grid-template-columns: 1fr; }
+  .contact-grid, .split, .amenity-row, .form-grid{ grid-template-columns: 1fr; }
+  .amenity-row.reverse .img-col{ order:0; }
+  .gallery-grid{ grid-template-columns: repeat(3,1fr); }
+  .hero-facts{ grid-template-columns: 1fr; }
+  .hero-facts div{ border-right:none; border-bottom:1px solid rgba(255,255,255,.15); }
+}
+@media (max-width: 620px){
+  .card-grid, .pillar-grid{ grid-template-columns: 1fr; }
+  .gallery-grid{ grid-template-columns: repeat(2,1fr); }
+  .footer-top{ grid-template-columns: 1fr; }
+  .phone-link span{ display:none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-header solid">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="l1">U RIVERGATE</span><span class="l2">Resort &amp; Spa · Karjat</span></a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="rooms.html">Rooms &amp; Villas</a>
+      <a href="dining.html">Dining</a>
+      <a href="facilities.html" class="active">Facilities</a>
+      <a href="offers.html">Offers</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="phone-link" href="tel:+919521622583">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+        <span>+91 95216 22583</span>
+      </a>
+      <a href="tel:+919521622583" class="btn solid">Book Now</a>
+      <button class="nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel">
+  <a href="index.html">Home</a>
+  <a href="rooms.html">Rooms &amp; Villas</a>
+  <a href="dining.html">Dining</a>
+  <a href="facilities.html">Facilities</a>
+  <a href="offers.html">Offers</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+  <a href="tel:+919521622583" class="btn light" style="margin-top:10px;">Call Now</a>
+</div>
+
+<main id="main">
+
+  <section class="page-hero" style="background-image:url('https://urivergateresortskarjat.com/wp-content/uploads/2026/05/Screenshot-2026-05-16-at-8.44.31-AM.png')">
+    <div class="container">
+      <span class="crumb">Home / Facilities</span>
+      <h1>Facilities &amp; Wellness</h1>
+      <p style="color:#e9e2d2; max-width:520px;">Relax, unwind, and enjoy your time out with a full slate of facilities designed for every mood.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Facilities</span>
+        <h2>A Splendid Time, In Every Corner</h2>
+        <p>U Rivergate Resort &amp; Spa offers a wide range of facilities to make sure you enjoy every moment of your stay.</p>
+      </div>
+
+      <div class="amenity-row reveal">
+        <div class="img-col"><img src="https://urivergateresortskarjat.com/wp-content/uploads/2026/05/Screenshot-2026-05-16-at-8.44.31-AM.png" alt="Lawns and open grounds"></div>
+        <div>
+          <span class="num">01</span>
+          <h3>Lawns &amp; Banquets</h3>
+          <p>Sprawling green lawns and banquet spaces suited to weddings, corporate off-sites and family celebrations of any size.</p>
+        </div>
+      </div>
+
+      <div class="amenity-row reverse reveal">
+        <div class="img-col"><img src="https://urivergateresortskarjat.com/wp-content/uploads/2026/05/Screenshot-2026-05-16-at-8.44.46-AM.png" alt="Restaurant and lounge bar"></div>
+        <div>
+          <span class="num">02</span>
+          <h3>Restaurant &amp; Lounge Bar</h3>
+          <p>An all-day dining restaurant, an open-air restaurant and a lounge bar — see our <a href="dining.html" style="text-decoration:underline;">Dining page</a> for more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-sand-deep">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Everything Else</span>
+        <h2>More to Enjoy On-Site</h2>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar reveal">
+          <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>Spa</h3>
+          <p>An in-house spa to help you heal, unwind and reset after a day exploring the grounds.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4v16M18 4v16M6 8h12M6 16h12"/></svg></div>
+          <h3>Gym</h3>
+          <p>24/7 access to a well-equipped gym, whatever hours your stay calls for.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+          <h3>Games Room</h3>
+          <p>Indoor games for every age — a favourite stop on our Day Picnic pass.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg></div>
+          <h3>Kids' Play Area</h3>
+          <p>A dedicated play area so the youngest guests have their own place to explore.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h3>Adventure Activities</h3>
+          <p>Outdoor adventure activities across the 60-acre grounds, with group discounts available.</p>
+        </div>
+        <div class="pillar reveal">
+          <div class="icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 0 1 2-2h8l6 6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v6h6"/></svg></div>
+          <h3>Library</h3>
+          <p>24/7 access to our library — a quiet corner for slower afternoons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container">
+      <span class="eyebrow">Plan an Event</span>
+      <h2>Weddings, Off-Sites &amp; Celebrations</h2>
+      <div class="hero-cta" style="justify-content:center; margin-top:20px;">
+        <a href="tel:+919521622583" class="btn solid">Call +91 95216 22583</a>
+        <a href="contact.html" class="btn light">Enquire Now</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><span class="l1">U RIVERGATE</span><span class="l2">Resort &amp; Spa · Karjat</span></a>
+      <p>60 acres along the banks of River Pej — a riverside resort two hours from Mumbai and Pune.</p>
+      <form class="newsletter-form" style="margin-top:20px;">
+        <div class="newsletter-row">
+          <input type="email" placeholder="Your email address" required aria-label="Email for newsletter">
+          <button type="submit">Join</button>
+        </div>
+      </form>
+      <div class="social-row">
+        <a href="https://wa.me/919521622583" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H8v3h2v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1Z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="rooms.html">Rooms &amp; Villas</a>
+      <a href="dining.html">Dining</a>
+      <a href="facilities.html">Facilities</a>
+      <a href="offers.html">Offers</a>
+      <a href="gallery.html">Gallery</a>
+    </div>
+    <div>
+      <h4>Resort</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="contact.html#map">Location &amp; Map</a>
+      <a href="offers.html">Corporate Stays</a>
+      <a href="facilities.html">Weddings &amp; Banquets</a>
+    </div>
+    <div>
+      <h4>Reach Us</h4>
+      <p style="color:#a9b3a5; font-size:.88rem;">Village Kalamboli, Via Kadav (Karjat–Murbad Road), Post Nasrapur, Taluka Karjat, Dist. Raigad, PIN 410201, Maharashtra.</p>
+      <a href="tel:+919521622583">+91 95216 22583</a>
+      <a href="mailto:reserve@urivergateresortkarjat.com">reserve@urivergateresortkarjat.com</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 U Rivergate Resort &amp; Spa. All rights reserved.</span>
+    <span>Karjat, Maharashtra, India</span>
+  </div>
+</footer>
+
+<div class="float-actions">
+  <a class="wa" href="https://wa.me/919521622583" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp" style="font-size: 25px;"></i></a>
+  <a class="call" href="tel:+919521622583" aria-label="Call the resort"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></a>
+</div>
+
+<script>
+// U Rivergate Resort & Spa — shared interactions
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* Header solid-on-scroll */
+  var header = document.querySelector('.site-header');
+  function onScroll(){
+    if (!header) return;
+    if (window.scrollY > 40) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  /* Mobile nav toggle */
+  var toggle = document.querySelector('.nav-toggle');
+  var panel = document.querySelector('.mobile-panel');
+  if (toggle && panel){
+    toggle.addEventListener('click', function(){
+      toggle.classList.toggle('open');
+      panel.classList.toggle('open');
+      document.body.style.overflow = panel.classList.contains('open') ? 'hidden' : '';
+    });
+    panel.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        toggle.classList.remove('open');
+        panel.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* Hero slider */
+  var slides = document.querySelectorAll('.hero-slide');
+  var dots = document.querySelectorAll('.hero-dots button');
+  if (slides.length){
+    var current = 0;
+    function show(i){
+      slides.forEach(function(s,idx){ s.classList.toggle('active', idx===i); });
+      dots.forEach(function(d,idx){ d.classList.toggle('active', idx===i); });
+      current = i;
+    }
+    dots.forEach(function(d,idx){
+      d.addEventListener('click', function(){ show(idx); restart(); });
+    });
+    var timer;
+    function restart(){
+      clearInterval(timer);
+      timer = setInterval(function(){ show((current+1) % slides.length); }, 5500);
+    }
+    show(0);
+    restart();
+  }
+
+  /* Scroll reveal */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && revealEls.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* Simple enquiry form handler (no backend — demo only) */
+  var form = document.querySelector('.enquiry-form');
+  if (form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var note = form.querySelector('.form-note');
+      if (note) note.textContent = 'Thank you — our reservations team will reach out shortly. For an instant response, WhatsApp us directly.';
+    });
+  }
+
+  /* Newsletter (demo only) */
+  var nl = document.querySelector('.newsletter-form');
+  if (nl){
+    nl.addEventListener('submit', function(e){
+      e.preventDefault();
+      var btn = nl.querySelector('button');
+      if (btn) btn.textContent = 'Subscribed ✓';
+    });
+  }
+});
+
+</script>
+</body>
+</html>
